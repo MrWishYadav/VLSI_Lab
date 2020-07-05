@@ -1,0 +1,14 @@
+module dec(z,a,ai);
+input [2:0]a;
+output [7:0]z;
+inout [2:0]ai;
+not (ai[0],a[0]),(ai[1],a[1]),(ai[2],a[2]);
+and (z[0],ai[2],ai[1],ai[0]);
+and (z[1],ai[2],ai[1],a[0]);
+and (z[2],ai[2],a[1],ai[0]);
+and (z[3],ai[2],a[1],a[0]);
+and (z[4],a[2],ai[1],ai[0]);
+and (z[5],a[2],ai[1],a[0]);
+and (z[6],a[2],a[1],ai[0]);
+and (z[7],a[2],a[1],a[0]);
+endmodule

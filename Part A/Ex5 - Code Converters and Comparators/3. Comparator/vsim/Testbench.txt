@@ -1,0 +1,17 @@
+module comparator_test;
+reg [3:0] a,b;
+wire greater, equal, lower;
+comparator g1(a,b,equal,greater,lower);
+initial
+begin
+#0	a=4'b0000;b=4'b0000;
+#50	a=4'b0000;b=4'b0011;
+#50	a=4'b1100;b=4'b0011;
+#50	a=4'b1111;b=4'b1111;
+end
+initial
+$monitor($time,"a=%b,b=%b,greater=%b,equal=%b,lower=%b",a,b,equal,greater,lower);
+initial
+#200	$stop;
+endmodule
+

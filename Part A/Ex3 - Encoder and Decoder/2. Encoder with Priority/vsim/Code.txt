@@ -1,0 +1,11 @@
+module encoder_withp(in,op);
+input [3:0]in;
+output reg [1:0]op;
+always @ (in)
+casez(in)
+4'bzzz1:op=2'b00;
+4'bzz10:op=2'b01;
+4'bz100:op=2'b10;
+4'b1000:op=2'b11;
+endcase
+endmodule

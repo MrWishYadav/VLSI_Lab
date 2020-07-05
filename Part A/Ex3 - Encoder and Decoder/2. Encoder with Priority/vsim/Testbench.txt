@@ -1,0 +1,16 @@
+module encoder_withp_test;
+reg [3:0]in;
+wire [1:0]op;
+encoder_withp g1(in,op);
+initial
+begin
+#0	in=4'bzzz1;
+#50	in=4'bzz10;
+#50	in=4'bz100;
+#50	in=4'b1000;
+end
+initial
+$monitor($time,"in=%b,op=%b",in,op);
+initial
+#200	$stop;
+endmodule

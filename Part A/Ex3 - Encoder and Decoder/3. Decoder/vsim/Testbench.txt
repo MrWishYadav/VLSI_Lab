@@ -1,0 +1,21 @@
+module dectest;
+reg [2:0]a;
+wire [2:0]ai;
+wire [7:0]z;
+dec g1(z,a,ai);
+initial
+begin
+#0	a=3'b000;
+#50	a=3'b001;
+#50	a=3'b010;
+#50	a=3'b011;
+#50	a=3'b100;
+#50	a=3'b101;
+#50	a=3'b110;
+#50	a=3'b111;
+end
+initial
+$monitor($time,"a=%b,z=%b",a,z);
+initial
+#400	$stop;
+endmodule

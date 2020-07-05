@@ -1,0 +1,25 @@
+module comparator(a,b,equal,greater,lower);
+input [3:0]a,b;
+output reg equal,greater,lower;
+always @ (a or b)
+begin
+if (a > b)
+begin
+greater = 1;
+equal = 0;
+lower = 0;
+end
+else if (a < b)
+begin
+greater = 0;
+equal = 0;
+lower = 1;
+end
+else if (a == b)
+begin
+greater = 0;
+equal = 1;
+lower = 0;
+end
+end
+endmodule

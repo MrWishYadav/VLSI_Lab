@@ -1,0 +1,29 @@
+module demux(a,b,s);
+input b;
+input [1:0]s;
+output reg [3:0]a;
+always @ (b or s)
+begin
+if(s==2'b00)
+begin
+a[0]=b;
+a[3:1]=3'bzzz;
+end
+else if(s==2'b01)
+begin
+a[1]=b;
+{a[3],a[2],a[0]}=3'bzzz;
+end
+else if(s==2'b10)
+begin
+a[2]=b;
+{a[3],a[1],a[0]}=3'bzzz;
+end
+else
+begin
+a[3]=b;
+a[2:0]=3'bzzz;
+end
+end
+endmodule
+

@@ -1,0 +1,16 @@
+module graytobinary_test;
+reg [3:0]g;
+wire [3:0]b;
+graytobinary g1(g,b);
+initial
+begin
+#0	g=4'b0000;
+#50	g=4'b0001;
+#50	g=4'b0010;
+#50	g=4'b0011;
+end
+initial
+$monitor($time,"g=%b,b=%b",g,b);
+initial
+#200	$stop;
+endmodule
