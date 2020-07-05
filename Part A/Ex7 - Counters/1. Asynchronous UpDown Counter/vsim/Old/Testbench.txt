@@ -1,0 +1,20 @@
+module async_udcounter_test;
+reg clk, reset, upordown;
+wire [3:0] count;
+async_udcounter g1(clk, reset, upordown, count);
+initial
+clk = 0;
+always
+#5	clk = ~clk;
+initial
+begin
+#0	reset = 0; upordown = 0;
+#320	upordown = 1;
+#320	reset = 1; upordown = 0;
+end
+initial
+$monitor($time,"clk = %b, reset = %b, upordown = %b, count = %b",clk, reset, upordown, count);
+initial
+#700	$stop;
+endmodule
+

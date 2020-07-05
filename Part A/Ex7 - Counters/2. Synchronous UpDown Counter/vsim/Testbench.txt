@@ -1,0 +1,23 @@
+module syn_udcounter_test;
+reg Clk,reset,UpOrDown; 
+wire [3:0] Count;
+syn_udcounter g1(Clk, reset,UpOrDown, Count);
+initial
+begin 
+Clk=0;
+forever #5 Clk=~Clk;
+end
+initial
+begin
+reset=1;
+UpOrDown=0;
+#20;
+reset=0;
+#100;
+UpOrDown=1;
+end
+initial
+$monitor($time,"Clk=%b,reset=%b,UpOrDown=%b",Clk,reset,UpOrDown);
+initial
+#400 $stop;
+endmodule 

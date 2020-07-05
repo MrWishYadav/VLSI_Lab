@@ -1,0 +1,14 @@
+module rand_ka_test;
+reg a, clk;
+wire w,x,y,z;
+wire [2:0] state;
+rand g1(a,clk,w,x,y,z,state);
+initial
+begin
+clk = 1'b0;
+a = 1'b0;
+#150 $stop;
+end
+always #2 clk = ~clk;
+always #60 a = ~a;
+endmodule

@@ -1,0 +1,59 @@
+//Random Sequence Generator - Mealy machine
+`define s0 3'b000//wxyz = 1000
+`define s1 3'b001//wxyz = 1100
+`define s2 3'b010//wxyz = 0100
+`define s3 3'b011//wxyz = 0110
+`define s4 3'b100//wxyz = 0010
+`define s5 3'b101//wxyz = 0011
+`define s6 3'b110//wxyz = 0001
+`define s7 3'b111//wxyz = 1001
+module rand(a,clk,w,x,y,z,state);
+input a,clk;
+output w,x,y,z;
+output [2:0]state;
+reg w,x,y,z;
+reg [2:0] state, next_state;
+initial
+begin
+if(!a)
+begin
+state = `s0;
+next_state = `s0;
+end
+else
+begin
+state = `s7;
+next_state = `s7;
+end
+end
+always @ (posedge clk)
+state = next_state;
+always @ (state)
+begin
+case(state)
+`s0: {w,x,y,z} = 4'b1000;
+`s1: {w,x,y,z} = 4'b1100;
+`s2: {w,x,y,z} = 4'b0100;
+`s3: {w,x,y,z} = 4'b0110;
+`s4: {w,x,y,z} = 4'b0010;
+`s5: {w,x,y,z} = 4'b0011;
+`s6: {w,x,y,z} = 4'b0001;
+`s7: {w,x,y,z} = 4'b1001;
+endcase
+end
+//Main Block
+always @ (clk)
+begin
+case(state)
+`s0: next_state=a?`s7:`s1;
+`s1: next_state=a?`s0:`s2;
+`s2: next_state=a?`s1:`s3;
+`s3: next_state=a?`s2:`s4;
+`s4: next_state=a?`s3:`s5;
+`s5: next_state=a?`s4:`s6;
+`s6: next_state=a?`s5:`s7;
+`s7: next_state=a?`s6:`s0;
+endcase
+end
+endmodule
+

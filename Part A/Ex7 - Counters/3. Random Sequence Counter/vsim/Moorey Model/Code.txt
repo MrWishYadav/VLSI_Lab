@@ -1,0 +1,36 @@
+//Random Sequence Counter - Moore machine
+`define s0 3'b000 // wxyz = 1000
+`define s1 3'b000 // wxyz = 1100
+`define s2 3'b000 // wxyz = 0100
+`define s3 3'b000 // wxyz = 0110
+`define s4 3'b000 // wxyz = 0010
+`define s5 3'b000 // wxyz = 0011
+`define s6 3'b000 // wxyz = 0001
+`define s7 3'b000 // wxyz = 1001
+
+module rand2(clr,clk,w,x,y,z);
+input clr,clk;
+output w,x,y,z;
+reg w,x,y,z;
+reg [2:0] present_state;
+//Main Block
+always @ (posedge clk or posedge clr)
+begin
+if (clr)
+present_state = `s0;
+else
+begin
+case(present_state)
+`s0:begin present_state=`s1; {w,x,y,z}=4'b1000; end
+`s1:begin present_state=`s2; {w,x,y,z}=4'b1100; end
+`s2:begin present_state=`s3; {w,x,y,z}=4'b0100; end
+`s3:begin present_state=`s4; {w,x,y,z}=4'b0110; end
+`s4:begin present_state=`s5; {w,x,y,z}=4'b0010; end
+`s5:begin present_state=`s6; {w,x,y,z}=4'b0011; end
+`s6:begin present_state=`s7; {w,x,y,z}=4'b0001; end
+`s7:begin present_state=`s0; {w,x,y,z}=4'b1001; end
+default : present_state=`s0;
+endcase
+end
+end
+endmodule

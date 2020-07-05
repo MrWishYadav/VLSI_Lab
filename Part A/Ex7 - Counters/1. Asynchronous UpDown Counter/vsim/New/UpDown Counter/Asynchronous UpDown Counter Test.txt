@@ -1,0 +1,18 @@
+module asynctest;
+reg preset, clear, clk, ud;
+wire [3:0] count;
+async g1(preset, clear, clk, ud, count);
+initial
+begin
+#0	clk = 1'b0; preset = 1'b0; clear = 1'b1;
+#10	clear = 1'b0; preset = 1'b1; ud = 1'b1;
+#44	ud = 1'b0;
+end
+always
+#1	clk=~clk;
+initial
+$monitor($time, "preset=%b, clear=%b, clk=%b, ud=%b; count=%b",preset, clear, clk, ud, count);
+initial
+#100	$stop;
+endmodule
+

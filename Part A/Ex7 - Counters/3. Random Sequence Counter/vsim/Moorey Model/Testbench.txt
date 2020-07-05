@@ -1,0 +1,21 @@
+// In a moore machine the next state logic is independent of primary inputs
+module rand2_ka_test;
+reg clr,clk;
+wire w,x,y,z;
+rand2 g1(clr,clr,w,x,y,z);
+initial 
+begin
+clk=1'b0;
+clr=1'b1;
+#3 clr =1'b0;
+end
+always 
+begin
+#2 clk = ~clk;
+end
+initial
+begin
+$monitor($time,"clr=%b,clr=%b,w=%b,x=%b,y=%b,z=%b",clr,clr,w,x,y,z);
+#50 $stop;
+end
+endmodule

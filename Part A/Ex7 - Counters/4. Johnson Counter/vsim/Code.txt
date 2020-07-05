@@ -1,0 +1,17 @@
+module johnson_counter(clk, reset, count_out);
+input clk,reset;
+output [3:0] count_out;
+reg [3:0] count_temp;
+always @ (posedge clk or posedge reset)
+begin
+if(reset == 1'b1)
+count_temp = 4'b0000;
+else if(clk == 1'b1)
+begin 
+//Left shift the count value and at the same time negate the least significant bit
+count_temp = {count_temp[2:0],~count_temp[3]};
+end
+end
+assign count_out = count_temp;
+endmodule
+
