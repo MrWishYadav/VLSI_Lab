@@ -1,0 +1,19 @@
+module piso_test;
+reg [3:0] din;
+reg clk,reset,load;
+wire dout;
+piso g1(din, clk, reset, load, dout);
+initial
+begin
+#0	reset = 1'b1; din = 4'b1101;clk = 1'b1;
+#2	load = 1; reset = 1'b0;
+#10	load = 0;
+end
+always
+#1	clk = ~clk;
+initial
+$monitor($time,"din = %b, clk = %b, reset = %b, load = %b, dout = %b",din, clk, reset, load, dout);
+initial
+#60	$stop;
+endmodule
+

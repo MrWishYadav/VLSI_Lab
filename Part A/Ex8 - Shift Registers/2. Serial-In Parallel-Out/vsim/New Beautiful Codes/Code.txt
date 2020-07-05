@@ -1,0 +1,21 @@
+module sipo(din, clk, reset, dout);
+output [3:0] dout;
+wire [3:0] dout;
+input din, clk, reset;
+wire din, clk, reset;
+reg [3:0]s;
+always @ (posedge clk)
+begin
+if(reset)
+s = 0;
+else
+begin
+s[3] = s[2];
+s[2] = s[1];
+s[1] = s[0];
+s[0] = din;
+end
+end
+assign dout = s;
+endmodule
+

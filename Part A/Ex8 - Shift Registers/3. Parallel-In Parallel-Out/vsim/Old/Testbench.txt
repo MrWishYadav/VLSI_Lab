@@ -1,0 +1,21 @@
+module parallelin_parallelout_test;
+reg clk, reset;
+reg [3:0] din;
+wire [3:0] dout;
+parallelin_parallelout g1(din, clk, reset, dout);
+initial
+begin
+#0	reset = 1'b0; clk = 1'b0; din = 4'b0011;
+end
+always
+#5	clk = ~clk;
+initial
+begin
+#10	din = 4'b1010;
+#10	din = 4'b1110;
+end
+initial
+$monitor($time,"din = %b, clk = %b, reset = %b, dout = %b",din, clk, reset, dout);
+initial
+#30	$stop;
+endmodule

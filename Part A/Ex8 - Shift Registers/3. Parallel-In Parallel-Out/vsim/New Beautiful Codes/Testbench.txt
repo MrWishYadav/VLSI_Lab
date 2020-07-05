@@ -1,0 +1,19 @@
+module pipo_test;
+reg clk, reset;
+reg [3:0] din;
+wire [3:0] dout;
+pipo g1(din, clk, reset, dout);
+initial
+begin
+#0	reset = 1'b1; clk = 1'b0; din = 4'b0011;
+#5      reset = 1'b0;
+#10	din = 4'b1010;
+#10	din = 4'b1110;
+end
+always
+#2	clk = ~clk;
+initial
+$monitor($time,"din = %b, clk = %b, reset = %b, dout = %b",din, clk, reset, dout);
+initial
+#30	$stop;
+endmodule

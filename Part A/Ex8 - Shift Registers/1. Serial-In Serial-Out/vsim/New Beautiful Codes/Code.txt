@@ -1,0 +1,22 @@
+module siso(din, clk, reset, dout);
+input din, clk, reset;
+output dout;
+wire [2:0]s;
+dflipflop g1(din,clk,reset,s[0]);
+dflipflop g2(s[0],clk,reset,s[1]);
+dflipflop g3(s[1],clk,reset,s[2]);
+dflipflop g4(s[2],clk,reset,dout);
+endmodule
+
+module dflipflop(din,clk,reset,dout);
+input din,clk,reset;
+output dout;
+reg dout;
+always @ (posedge clk)
+begin
+if(reset)
+dout = 0;
+else
+dout = din;
+end
+endmodule

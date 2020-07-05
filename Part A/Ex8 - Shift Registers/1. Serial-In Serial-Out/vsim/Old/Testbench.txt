@@ -1,0 +1,27 @@
+module serialin_serialout_test;
+reg din, clk, reset;
+wire dout;
+serialin_serialout g1(din, clk, reset, dout);
+initial
+begin
+#0	clk = 1'b0;reset = 1'b1; din = 1'b1;
+end
+always
+#2	clk = ~clk;
+initial
+begin
+#1	reset = 1'b0;
+#10	din = 1'b0;
+#10	din = 1'b1;
+#10	din = 1'b0;
+#10	din = 1'b1;
+#10	din = 1'b1;
+#10	din = 1'b0;
+end
+initial
+$monitor($time,"din = %b, clk = %b, reset = %b, dout = %b",din, clk, reset, dout);
+initial
+#100	$stop;
+endmodule
+
+

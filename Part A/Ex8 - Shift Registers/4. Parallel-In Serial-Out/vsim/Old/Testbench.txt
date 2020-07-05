@@ -1,0 +1,21 @@
+module parallelin_serialout_test;
+reg [3:0] din;
+reg clk,reset,load;
+wire dout;
+parallelin_serialout g1(din, clk, reset, load, dout);
+initial
+#0	clk = 1'b1;
+always
+#5	clk = ~clk;
+initial
+begin
+#0	reset = 1'b1; din = 4'b1101;
+#2	load = 1; reset = 1'b0;
+#10	load = 0;
+end
+initial
+$monitor($time,"din = %b, clk = %b, reset = %b, load = %b, dout = %b",din, clk, reset, load, dout);
+initial
+#60	$stop;
+endmodule
+

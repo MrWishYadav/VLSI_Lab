@@ -1,0 +1,17 @@
+module pipo(din,clk,reset,dout);
+input [3:0]din;
+input clk,reset;
+wire [3:0] din;
+wire clk,reset;
+output [3:0]dout;
+reg [3:0]dout;
+always @(posedge clk)
+begin
+if(reset)
+dout =0;
+else
+dout =din;
+end
+endmodule
+
+
