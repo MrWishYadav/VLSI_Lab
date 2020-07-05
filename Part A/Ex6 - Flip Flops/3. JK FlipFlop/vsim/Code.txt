@@ -1,0 +1,17 @@
+module jkflipflop(jk, clk, q);
+input [1:0]jk;
+input clk;
+output q;
+reg q = 0;
+always @ (posedge clk)
+begin
+if (jk==2'b00)
+q=q;
+else if (jk==2'b01)
+q=0;
+else if (jk==2'b10)
+q=1;
+else
+q=~q;
+end
+endmodule

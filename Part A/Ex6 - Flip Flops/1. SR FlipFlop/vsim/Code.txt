@@ -1,0 +1,17 @@
+module srflipflop(sr,clk,q);
+input [1:0]sr;
+input clk;
+output q;
+reg q = 0;
+always @ (posedge clk)
+begin
+if (sr==2'b00)
+q = q;
+else if(sr==2'b01)
+q = 0;
+else if(sr==2'b10)
+q = 1;
+else
+q = 1'bx;
+end
+endmodule

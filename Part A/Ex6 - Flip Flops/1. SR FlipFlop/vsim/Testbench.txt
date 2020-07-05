@@ -1,0 +1,22 @@
+module srflipflop_test;
+reg [1:0]sr;
+reg clk;
+wire q;
+srflipflop g1(sr,clk,q);
+initial
+begin
+#0	clk=0;sr=2'b00;
+#100	sr=2'b01;
+#100	sr=2'b10;
+#100	sr=2'b11;
+end
+always
+begin
+#10	clk=~clk;
+end
+initial
+$monitor($time,"sr=%b,clk=%b,q=%b",sr,clk,q);
+initial
+#400	$stop;
+endmodule
+

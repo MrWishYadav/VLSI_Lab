@@ -1,0 +1,21 @@
+module dflipflop_test;
+reg d,clk;
+wire q;
+dflipflop g1(d,clk,q);
+initial
+begin
+#0	clk=0;d=0;
+#100	d=1;
+#100	d=0;
+#100	d=1;
+end
+always
+begin
+#10	clk=~clk;
+end
+initial
+$monitor($time,"d=%b,clk=%b,q=%b",d,clk,q);
+initial
+#400	$stop;
+endmodule
+

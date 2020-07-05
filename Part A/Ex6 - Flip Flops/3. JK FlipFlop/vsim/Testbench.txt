@@ -1,0 +1,21 @@
+module jkflipflop_test;
+reg [1:0]jk;
+reg clk;
+wire q;
+jkflipflop g1(jk,clk,q);
+initial
+begin
+#0	clk = 0;jk=2'b00;
+#100	jk=2'b01;
+#100	jk=2'b10;
+#100	jk=2'b11;
+end
+always
+begin
+#10	clk=~clk;
+end
+initial
+$monitor($time,"jk=%b,clk=%b,q=%b",jk,clk,q);
+initial
+#400	$stop;
+endmodule

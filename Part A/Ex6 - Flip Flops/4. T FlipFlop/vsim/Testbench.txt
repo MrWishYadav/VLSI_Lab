@@ -1,0 +1,20 @@
+module tflipflop_test;
+reg t,clk;
+wire q;
+tflipflop g1(t,clk,q);
+initial
+begin
+#0	clk=0;t=0;
+#100	t=1;
+#100	t=0;
+#100	t=1;
+end
+always
+begin
+#10	clk=~clk;
+end
+initial
+$monitor($time,"t=%b,clk=%b,q=%b",t,clk,q);
+initial
+#400	$stop;
+endmodule

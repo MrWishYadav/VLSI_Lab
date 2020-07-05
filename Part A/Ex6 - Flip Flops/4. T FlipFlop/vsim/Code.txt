@@ -1,0 +1,12 @@
+module tflipflop(t,clk,q);
+input t,clk;
+output q;
+reg q = 0;
+always @ (posedge clk)
+begin
+if(t==1)
+q=~q;
+else
+q=q;
+end
+endmodule
