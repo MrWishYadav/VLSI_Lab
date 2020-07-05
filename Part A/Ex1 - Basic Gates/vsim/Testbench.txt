@@ -1,0 +1,17 @@
+module basic_gates_test;
+reg a,b;
+wire [6:0]y;
+basic_gates g1(a,b,y);
+
+initial
+begin
+#0	a=1'b0; b=1'b0;
+#100	a=1'b0; b=1'b1;
+#100	a=1'b1; b=1'b0;
+#100	a=1'b1; b=1'b1;
+end
+initial
+$monitor ($time,"a=%b,b=%b,y=%b",a,b,y);
+initial
+#400 $stop;
+endmodule

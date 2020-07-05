@@ -1,0 +1,16 @@
+
+module fa_ha(sum,cout,a,b,cin);
+input a,b,cin;
+output sum,cout;
+wire s1,c1,c;
+ha g3(s1,c1,a,b);
+ha g4(sum,c,s1,cin);
+or g5(cout,c,c1);
+endmodule
+
+module ha(sum,c,a,b);
+input a,b;
+output sum,c;
+xor g1(sum,a,b);
+and g2(c,a,b);
+endmodule

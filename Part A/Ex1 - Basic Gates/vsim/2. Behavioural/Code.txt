@@ -1,0 +1,47 @@
+module basic_gates(a,b,y);
+input  a,b;
+output reg [6:0]y; 
+always @ (a,b)
+begin
+if (a == 0 && b == 0)
+begin
+y[0] = 0; //and
+y[1] = 0; //or
+y[2] = 1; //nand
+y[3] = 1; //nor
+y[4] = 0; //ex-or
+y[5] = 1; //ex-nor
+y[6] = 1; //not
+end
+else if (a == 0 && b == 1)
+begin
+y[0] = 0; //and
+y[1] = 1; //or
+y[2] = 1; //nand
+y[3] = 0; //nor
+y[4] = 1; //ex-or
+y[5] = 0; //ex-nor
+y[6] = 1; //not
+end
+else if (a == 1 && b == 0)
+begin
+y[0] = 0; //and
+y[1] = 1; //or
+y[2] = 1; //nand
+y[3] = 0; //nor
+y[4] = 1; //ex-or
+y[5] = 0; //ex-nor
+y[6] = 0; //not
+end
+else if (a == 1 && b == 1)
+begin
+y[0] = 1; //and
+y[1] = 1; //or
+y[2] = 0; //nand
+y[3] = 0; //nor
+y[4] = 0; //ex-or
+y[5] = 1; //ex-nor
+y[6] = 0; //not
+end
+end
+endmodule

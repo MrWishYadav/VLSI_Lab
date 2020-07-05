@@ -1,0 +1,19 @@
+module rca_gate_test;
+reg [3:0]a,b;
+reg cin;
+wire cout;
+wire [3:0]sum;
+rca_gate g1 (a,b,cin,carry,sum,cout);
+initial
+begin
+#0	a=4'b0000; b=4'b0000; cin=1'b0;
+#100	a=4'b0110; b=4'b1111; cin=1'b1;
+#100	a=4'b1001; b=4'b1100; cin=1'b0;
+#100	a=4'b1100; b=4'b0011; cin=1'b0;
+#100	a=4'b0011; b=4'b0101; cin=1'b1;
+end
+initial
+$monitor($time,"a = %b,b = %b,cin = %b,sum = %b,cout = %b",a,b,cin,sum,cout);
+initial
+#500 $stop;
+endmodule

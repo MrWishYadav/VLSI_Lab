@@ -1,0 +1,18 @@
+module ripple(s,carry,a,b,cin);
+input [3:0]a,b;
+input cin;
+output [3:0]s;
+output carry;
+wire [2:0]cc;
+fa g1(s[0],cc[0],a[0],b[0],cin);
+fa g2(s[1],cc[1],a[1],b[1],cc[0]);
+fa g3(s[2],cc[2],a[2],b[2],cc[1]);
+fa g4(s[3],carry,a[3],b[3],cc[2]);
+endmodule
+
+module fa(s,cout,a,b,cin);
+input a,b,cin;
+output s,cout;
+assign s = a^b^cin;
+assign cout = (a&b)+(a^b)&cin;
+endmodule

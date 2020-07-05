@@ -1,0 +1,27 @@
+module rca_gate(a,b,cin,carry,sum,cout);
+input [3:0]a,b;
+input cin;
+inout [2:0]carry;
+output cout;
+output [3:0]sum;
+full_adder g1(a[0],b[0],cin,sum[0],carry[0]);
+full_adder g2(a[1],b[1],carry[0],sum[1],carry[1]);
+full_adder g3(a[2],b[2],carry[1],sum[2],carry[2]);
+full_adder g4(a[3],b[3],carry[2],sum[3],cout);
+endmodule
+
+module full_adder(a,b,cin,sum,cout);
+input a,b,cin;
+output sum,cout;
+wire s1,c1,c;
+ha g3(s1,c1,a,b);
+ha g4(sum,c,s1,cin);
+or g5(cout,c,c1);
+endmodule
+
+module ha(sum,c,a,b);
+input a,b;
+output sum,c;
+xor g1(sum,a,b);
+and g2(c,a,b);
+endmodule

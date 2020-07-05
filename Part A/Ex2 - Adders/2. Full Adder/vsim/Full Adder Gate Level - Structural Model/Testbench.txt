@@ -1,0 +1,20 @@
+module fa_ha_test;
+reg a,b,cin;
+wire sum,cout;
+fa_ha g6(sum,cout,a,b,cin);
+initial
+begin
+#0	a=0;b=0;cin=0;
+#50	a=0;b=0;cin=1;
+#50	a=0;b=1;cin=0;
+#50	a=0;b=1;cin=1;
+#50	a=1;b=0;cin=0;
+#50	a=1;b=0;cin=1;
+#50	a=1;b=1;cin=0;
+#50	a=1;b=1;cin=1;
+end
+initial
+$monitor($time,"a=%b,b=%b,cin=%b,sum=%b,cout=%b",a,b,cin,sum,cout);
+initial
+#400	$stop;
+endmodule

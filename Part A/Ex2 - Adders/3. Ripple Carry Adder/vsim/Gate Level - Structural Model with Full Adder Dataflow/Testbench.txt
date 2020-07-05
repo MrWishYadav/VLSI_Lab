@@ -1,0 +1,25 @@
+module ripple_test;
+reg [3:0]a,b;
+reg cin;
+wire [3:0]s;
+wire carry;
+ripple g1(s,carry,a,b,cin);
+initial
+begin
+#0 a = 4'b0000; b = 4'b0000; cin= 1'b0;
+end
+always
+begin
+#2 a = 4'b0000; b = 4'b0000; cin = 1'b0;
+#2 a = 4'b0001; b = 4'b0100; cin = 1'b0;
+#2 a = 4'b0100; b = 4'b0100; cin = 1'b0;
+#2 a = 4'b0100; b = 4'b0010; cin = 1'b0;
+end
+initial
+$monitor($time,"a=%b,b=%b,cin=%b,s=%b,carry=%b",a,b,cin,s,carry);
+initial
+#30 $stop;
+endmodule
+
+
+

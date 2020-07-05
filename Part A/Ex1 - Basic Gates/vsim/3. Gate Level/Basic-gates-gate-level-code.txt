@@ -1,0 +1,12 @@
+
+module basic_gates(a,b,y);
+input a,b;
+output [6:0]y;
+and(y[0],a,b);
+or(y[1],a,b);
+nand(y[2],a,b);
+nor(y[3],a,b);
+xor(y[4],a,b);
+xnor(y[5],a,b);
+not(y[6],a);
+endmodule
